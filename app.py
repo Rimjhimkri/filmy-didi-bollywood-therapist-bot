@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify, render_template
 from bot import get_therapist_response
 
