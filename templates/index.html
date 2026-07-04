@@ -12,11 +12,9 @@
   :root {
     --maroon-deep: #2a0a14;
     --maroon: #4a0e1f;
-    --maroon-light: #6b1228;
     --gold: #d4a23a;
     --gold-bright: #f0c869;
     --gold-pale: #f5e6c8;
-    --cream: #faf3e6;
     --text-warm: #f5e6c8;
   }
 
@@ -24,11 +22,10 @@
     font-family: 'Poppins', sans-serif;
     background: var(--maroon-deep);
     min-height: 100vh;
+    min-height: 100dvh;
     overflow-x: hidden;
-    position: relative;
   }
 
-  /* ornamental backdrop */
   body::before {
     content: '';
     position: fixed;
@@ -40,7 +37,6 @@
     z-index: -2;
   }
 
-  /* subtle film-grain / paisley texture via repeating dots */
   body::after {
     content: '';
     position: fixed;
@@ -51,47 +47,31 @@
     opacity: 0.5;
   }
 
+  /* ── Layout ── */
   .stage {
-    max-width: 640px;
+    max-width: 600px;
     margin: 0 auto;
-    padding: 48px 20px 80px;
-    position: relative;
+    padding: 36px 20px 60px;
   }
 
-  /* curtain corner ornaments */
-  .corner-ornament {
-    position: fixed;
-    width: 160px;
-    height: 160px;
-    border: 2px solid rgba(212,162,58,0.25);
-    pointer-events: none;
-    z-index: 0;
-  }
-  .corner-ornament.tl { top: 0; left: 0; border-right: none; border-bottom: none; border-radius: 0 0 100% 0; }
-  .corner-ornament.br { bottom: 0; right: 0; border-left: none; border-top: none; border-radius: 100% 0 0 0; }
-
-  header {
-    text-align: center;
-    margin-bottom: 36px;
-    position: relative;
-  }
+  /* ── Header ── */
+  header { text-align: center; margin-bottom: 28px; }
 
   .reel-icon {
-    font-size: 13px;
+    font-size: 11px;
     letter-spacing: 0.35em;
     color: var(--gold);
     text-transform: uppercase;
     font-weight: 500;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 10px;
   }
   .reel-icon::before, .reel-icon::after {
     content: '';
-    width: 32px;
-    height: 1px;
+    width: 28px; height: 1px;
     background: linear-gradient(90deg, transparent, var(--gold));
   }
   .reel-icon::after { background: linear-gradient(90deg, var(--gold), transparent); }
@@ -99,45 +79,78 @@
   h1 {
     font-family: 'Playfair Display', serif;
     font-weight: 900;
-    font-size: clamp(40px, 9vw, 64px);
+    font-size: clamp(32px, 8vw, 58px);
     color: var(--gold-bright);
     letter-spacing: 0.01em;
-    text-shadow: 0 0 30px rgba(240,200,105,0.25);
+    text-shadow: 0 0 30px rgba(240,200,105,0.2);
     line-height: 1.05;
   }
-
   h1 em {
     font-style: italic;
     font-weight: 500;
     color: var(--text-warm);
-    font-size: 0.62em;
+    font-size: 0.58em;
     display: block;
-    margin-top: 6px;
+    margin-top: 4px;
     letter-spacing: 0.04em;
   }
 
   .tagline {
-    margin-top: 18px;
-    color: rgba(245,230,200,0.65);
-    font-size: 14.5px;
+    margin-top: 14px;
+    color: rgba(245,230,200,0.6);
+    font-size: 13.5px;
     font-weight: 300;
     line-height: 1.7;
-    max-width: 420px;
-    margin-left: auto;
-    margin-right: auto;
   }
-
   .tagline strong { color: var(--gold); font-weight: 500; }
 
-  /* chat card */
+  /* ── Mood selector ── */
+  .mood-section { margin-bottom: 14px; }
+  .mood-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(245,230,200,0.45);
+    font-weight: 500;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .mood-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    justify-content: center;
+  }
+  .mood-chip {
+    background: rgba(245,230,200,0.05);
+    border: 1px solid rgba(212,162,58,0.22);
+    color: rgba(245,230,200,0.65);
+    padding: 7px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.18s;
+    font-family: 'Poppins', sans-serif;
+    white-space: nowrap;
+  }
+  .mood-chip:hover, .mood-chip.active {
+    background: rgba(212,162,58,0.15);
+    border-color: var(--gold);
+    color: var(--gold-bright);
+  }
+  .mood-chip.active {
+    background: rgba(212,162,58,0.2);
+    box-shadow: 0 0 12px rgba(212,162,58,0.2);
+  }
+
+  /* ── Chat frame ── */
   .chat-frame {
     background: linear-gradient(180deg, rgba(245,230,200,0.04), rgba(245,230,200,0.015));
-    border: 1px solid rgba(212,162,58,0.3);
+    border: 1px solid rgba(212,162,58,0.28);
     border-radius: 4px;
     position: relative;
     overflow: hidden;
   }
-
   .chat-frame::before {
     content: '';
     position: absolute;
@@ -147,134 +160,124 @@
   }
 
   .chat-titlebar {
-    padding: 16px 22px;
-    border-bottom: 1px solid rgba(212,162,58,0.18);
+    padding: 13px 18px;
+    border-bottom: 1px solid rgba(212,162,58,0.15);
     display: flex;
     align-items: center;
     gap: 10px;
   }
-
   .titlebar-dot {
     width: 7px; height: 7px;
     border-radius: 50%;
     background: var(--gold);
     box-shadow: 0 0 8px var(--gold);
     animation: pulse 2.4s ease-in-out infinite;
+    flex-shrink: 0;
   }
-  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
-
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
   .titlebar-text {
-    font-size: 12.5px;
-    letter-spacing: 0.12em;
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: rgba(245,230,200,0.5);
+    color: rgba(245,230,200,0.45);
     font-weight: 500;
   }
 
   .chat-log {
-    min-height: 320px;
-    max-height: 480px;
+    min-height: 280px;
+    max-height: 420px;
     overflow-y: auto;
-    padding: 26px 22px;
+    padding: 20px 18px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
+    -webkit-overflow-scrolling: touch;
   }
-
-  .chat-log::-webkit-scrollbar { width: 5px; }
-  .chat-log::-webkit-scrollbar-thumb { background: rgba(212,162,58,0.3); border-radius: 3px; }
+  .chat-log::-webkit-scrollbar { width: 4px; }
+  .chat-log::-webkit-scrollbar-thumb { background: rgba(212,162,58,0.25); border-radius: 2px; }
 
   .empty-state {
     margin: auto;
     text-align: center;
-    color: rgba(245,230,200,0.35);
-    font-size: 13.5px;
+    color: rgba(245,230,200,0.32);
+    font-size: 13px;
     font-style: italic;
     font-family: 'Playfair Display', serif;
-    padding: 20px;
+    padding: 16px;
     line-height: 1.8;
   }
 
-  .msg {
-    max-width: 84%;
-    animation: riseIn 0.4s ease both;
-  }
-  @keyframes riseIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
+  .msg { max-width: 88%; animation: riseIn 0.35s ease both; }
+  @keyframes riseIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
   .msg.user { align-self: flex-end; }
   .msg.didi { align-self: flex-start; }
 
   .msg-label {
-    font-size: 10.5px;
-    letter-spacing: 0.14em;
+    font-size: 10px;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
     font-weight: 500;
   }
-  .msg.user .msg-label { color: rgba(245,230,200,0.4); text-align: right; }
+  .msg.user .msg-label { color: rgba(245,230,200,0.38); text-align: right; }
   .msg.didi .msg-label { color: var(--gold); }
 
   .msg-bubble {
-    padding: 14px 18px;
+    padding: 12px 16px;
     border-radius: 3px;
-    font-size: 14.5px;
-    line-height: 1.75;
+    font-size: 14px;
+    line-height: 1.72;
   }
-
   .msg.user .msg-bubble {
-    background: rgba(245,230,200,0.08);
+    background: rgba(245,230,200,0.07);
     color: var(--text-warm);
-    border: 1px solid rgba(245,230,200,0.12);
+    border: 1px solid rgba(245,230,200,0.1);
   }
-
   .msg.didi .msg-bubble {
-    background: rgba(212,162,58,0.09);
+    background: rgba(212,162,58,0.08);
     color: var(--gold-pale);
-    border: 1px solid rgba(212,162,58,0.22);
+    border: 1px solid rgba(212,162,58,0.2);
     font-family: 'Playfair Display', serif;
     font-weight: 500;
     font-style: italic;
-    font-size: 15.5px;
+    font-size: 14.5px;
   }
 
-  .typing-bubble {
-    display: flex;
-    gap: 5px;
-    padding: 16px 18px;
-  }
+  .typing-bubble { display:flex; gap:5px; padding:14px 16px; }
   .typing-bubble span {
-    width: 6px; height: 6px;
-    background: var(--gold);
-    border-radius: 50%;
-    animation: bounce 1.3s infinite ease-in-out;
+    width:6px; height:6px;
+    background:var(--gold);
+    border-radius:50%;
+    animation:bounce 1.3s infinite ease-in-out;
   }
-  .typing-bubble span:nth-child(2) { animation-delay: 0.15s; }
-  .typing-bubble span:nth-child(3) { animation-delay: 0.3s; }
-  @keyframes bounce { 0%,80%,100% { transform: translateY(0); opacity: 0.4; } 40% { transform: translateY(-6px); opacity: 1; } }
+  .typing-bubble span:nth-child(2) { animation-delay:0.15s; }
+  .typing-bubble span:nth-child(3) { animation-delay:0.3s; }
+  @keyframes bounce { 0%,80%,100% { transform:translateY(0);opacity:0.4; } 40% { transform:translateY(-6px);opacity:1; } }
 
+  /* ── Input row ── */
   .chat-input-row {
     display: flex;
-    gap: 10px;
-    padding: 18px 22px 22px;
-    border-top: 1px solid rgba(212,162,58,0.18);
+    gap: 8px;
+    padding: 14px 16px 18px;
+    border-top: 1px solid rgba(212,162,58,0.15);
   }
 
   #userInput {
     flex: 1;
+    min-width: 0;
     background: rgba(245,230,200,0.05);
-    border: 1px solid rgba(212,162,58,0.3);
+    border: 1px solid rgba(212,162,58,0.28);
     border-radius: 3px;
-    padding: 13px 16px;
+    padding: 12px 14px;
     color: var(--text-warm);
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
     outline: none;
     transition: border-color 0.2s, background 0.2s;
+    /* prevents iOS zoom on focus */
+    font-size: max(16px, 14px);
   }
-  #userInput::placeholder { color: rgba(245,230,200,0.3); }
+  #userInput::placeholder { color: rgba(245,230,200,0.28); }
   #userInput:focus { border-color: var(--gold); background: rgba(245,230,200,0.08); }
 
   #sendBtn {
@@ -282,36 +285,39 @@
     color: var(--maroon-deep);
     border: none;
     border-radius: 3px;
-    padding: 0 24px;
+    padding: 0 20px;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    font-size: 13.5px;
+    font-size: 13px;
     letter-spacing: 0.04em;
     cursor: pointer;
     transition: transform 0.15s, box-shadow 0.15s;
     white-space: nowrap;
+    flex-shrink: 0;
+    min-height: 46px;
   }
   #sendBtn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(212,162,58,0.35); }
   #sendBtn:active { transform: translateY(0); }
-  #sendBtn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+  #sendBtn:disabled { opacity:0.5; cursor:not-allowed; transform:none; box-shadow:none; }
 
+  /* ── Suggestion chips ── */
   .suggestions {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 18px;
+    gap: 7px;
+    margin-top: 14px;
     justify-content: center;
   }
-
   .suggestion-chip {
-    background: rgba(245,230,200,0.05);
-    border: 1px solid rgba(212,162,58,0.25);
-    color: rgba(245,230,200,0.7);
-    padding: 8px 16px;
+    background: rgba(245,230,200,0.04);
+    border: 1px solid rgba(212,162,58,0.2);
+    color: rgba(245,230,200,0.6);
+    padding: 7px 14px;
     border-radius: 20px;
-    font-size: 12.5px;
+    font-size: 12px;
     cursor: pointer;
     transition: all 0.2s;
+    font-family: 'Poppins', sans-serif;
   }
   .suggestion-chip:hover {
     background: rgba(212,162,58,0.12);
@@ -321,17 +327,39 @@
 
   footer {
     text-align: center;
-    margin-top: 40px;
-    color: rgba(245,230,200,0.3);
-    font-size: 12px;
+    margin-top: 32px;
+    color: rgba(245,230,200,0.28);
+    font-size: 11.5px;
     letter-spacing: 0.04em;
+    line-height: 1.8;
   }
   footer a { color: var(--gold); text-decoration: none; }
-  footer a:hover { text-decoration: underline; }
 
+  /* ── Mobile ── */
   @media (max-width: 480px) {
-    .stage { padding: 32px 14px 60px; }
-    .corner-ornament { width: 90px; height: 90px; }
+    .stage { padding: 24px 12px 48px; }
+    h1 { font-size: 36px; }
+    h1 em { font-size: 14px; }
+    .tagline { font-size: 13px; display: none; }
+    .chat-log { min-height: 240px; max-height: 52vh; padding: 16px 14px; }
+    .msg { max-width: 94%; }
+    .msg-bubble { font-size: 13.5px; padding: 10px 13px; }
+    .msg.didi .msg-bubble { font-size: 14px; }
+    .chat-input-row { padding: 12px 12px 14px; gap: 7px; }
+    #userInput { padding: 11px 12px; }
+    #sendBtn { padding: 0 14px; font-size: 12px; min-height: 44px; }
+    .mood-chips { gap: 6px; }
+    .mood-chip { font-size: 11.5px; padding: 6px 12px; }
+    .suggestions { gap: 6px; }
+    .suggestion-chip { font-size: 11.5px; padding: 6px 12px; }
+    .chat-titlebar { padding: 11px 14px; }
+    .reel-icon { font-size: 10px; }
+  }
+
+  @media (max-width: 360px) {
+    h1 { font-size: 30px; }
+    .stage { padding: 18px 10px 40px; }
+    #sendBtn { padding: 0 10px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -341,20 +369,30 @@
 </head>
 <body>
 
-<div class="corner-ornament tl"></div>
-<div class="corner-ornament br"></div>
-
 <div class="stage">
   <header>
     <div class="reel-icon">Now Showing</div>
     <h1>Filmy Didi<em>your bollywood therapist</em></h1>
-    <p class="tagline">Every problem has a song, a scene, and a solution. Tell <strong>Filmy Didi</strong> what's on your mind — she's seen every movie, and she's got the dialogue you need.</p>
+    <p class="tagline">Every problem has a song, a scene, and a solution. Tell <strong>Filmy Didi</strong> what's on your mind.</p>
   </header>
+
+  <!-- Mood selector -->
+  <div class="mood-section">
+    <div class="mood-label">How are you feeling?</div>
+    <div class="mood-chips">
+      <button class="mood-chip" onclick="selectMood(this, 'sad')">😢 Sad</button>
+      <button class="mood-chip" onclick="selectMood(this, 'anxious')">😰 Anxious</button>
+      <button class="mood-chip" onclick="selectMood(this, 'heartbreak')">💔 Heartbreak</button>
+      <button class="mood-chip" onclick="selectMood(this, 'motivation')">🔥 Need motivation</button>
+      <button class="mood-chip" onclick="selectMood(this, 'angry')">😤 Angry</button>
+      <button class="mood-chip" onclick="selectMood(this, 'lost')">🌀 Feeling lost</button>
+    </div>
+  </div>
 
   <div class="chat-frame">
     <div class="chat-titlebar">
       <div class="titlebar-dot"></div>
-      <div class="titlebar-text">Filmy Didi is listening</div>
+      <div class="titlebar-text" id="titlebarText">Filmy Didi is listening</div>
     </div>
 
     <div class="chat-log" id="chatLog">
@@ -371,10 +409,12 @@
     <div class="suggestion-chip" onclick="fillSuggestion(this)">I'm nervous about my interview</div>
     <div class="suggestion-chip" onclick="fillSuggestion(this)">I failed an exam</div>
     <div class="suggestion-chip" onclick="fillSuggestion(this)">I'm stressed about money</div>
+    <div class="suggestion-chip" onclick="fillSuggestion(this)">My friend betrayed me</div>
   </div>
 
   <footer>
-    Built by <a href="https://www.linkedin.com/in/rimjhim-kumari-098302374" target="_blank">Rimjhim Kumari</a> · Powered by Gemini · A prompt engineering project
+    Built by <a href="https://www.linkedin.com/in/rimjhim-kumari-098302374" target="_blank">Rimjhim Kumari</a><br>
+    Powered by Gemini · A prompt engineering project
   </footer>
 </div>
 
@@ -382,15 +422,47 @@
 const chatLog = document.getElementById('chatLog');
 const userInput = document.getElementById('userInput');
 const sendBtn = document.getElementById('sendBtn');
-const emptyState = document.getElementById('emptyState');
+let selectedMood = null;
+
+// Mood context added to the message for better prompting
+const moodContext = {
+  sad: "The user is feeling sad and down.",
+  anxious: "The user is feeling anxious and worried.",
+  heartbreak: "The user is going through heartbreak or relationship pain.",
+  motivation: "The user needs motivation and encouragement.",
+  angry: "The user is feeling angry and frustrated.",
+  lost: "The user is feeling lost and confused about life direction."
+};
+
+const moodMovies = {
+  sad: "Focus on comforting Bollywood films like Anand, Taare Zameen Par, or Dear Zindagi.",
+  anxious: "Focus on Bollywood films about overcoming fear like Chak De India or 3 Idiots.",
+  heartbreak: "Focus on Bollywood films about heartbreak like Dil Chahta Hai, Tamasha, or Rockstar.",
+  motivation: "Focus on motivational Bollywood films like Bhaag Milkha Bhaag, Mary Kom, or Dangal.",
+  angry: "Focus on Bollywood films about channeling anger wisely like Rang De Basanti or Swades.",
+  lost: "Focus on Bollywood films about finding oneself like Tamasha, Zindagi Na Milegi Dobara, or Queen."
+};
+
+function selectMood(el, mood) {
+  document.querySelectorAll('.mood-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  selectedMood = mood;
+  document.getElementById('titlebarText').textContent = `Filmy Didi is ready for your ${el.textContent.split(' ').slice(1).join(' ').toLowerCase()} heart`;
+  userInput.focus();
+}
 
 function fillSuggestion(el) {
   userInput.value = el.textContent;
   userInput.focus();
 }
 
+function removeEmptyState() {
+  const es = document.getElementById('emptyState');
+  if (es) es.remove();
+}
+
 function addMessage(text, sender) {
-  if (emptyState) emptyState.remove();
+  removeEmptyState();
   const msg = document.createElement('div');
   msg.className = `msg ${sender}`;
   msg.innerHTML = `
@@ -403,6 +475,7 @@ function addMessage(text, sender) {
 }
 
 function addTyping() {
+  removeEmptyState();
   const msg = document.createElement('div');
   msg.className = 'msg didi';
   msg.id = 'typingMsg';
@@ -418,6 +491,12 @@ async function sendMessage() {
   const text = userInput.value.trim();
   if (!text) return;
 
+  // Build enriched message with mood context if selected
+  let enrichedMessage = text;
+  if (selectedMood) {
+    enrichedMessage = `[Mood context: ${moodContext[selectedMood]} ${moodMovies[selectedMood]}] User says: ${text}`;
+  }
+
   addMessage(text, 'user');
   userInput.value = '';
   sendBtn.disabled = true;
@@ -427,7 +506,7 @@ async function sendMessage() {
     const res = await fetch('/ask', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: text })
+      body: JSON.stringify({ message: enrichedMessage })
     });
     const data = await res.json();
     document.getElementById('typingMsg')?.remove();
@@ -439,7 +518,7 @@ async function sendMessage() {
     }
   } catch (err) {
     document.getElementById('typingMsg')?.remove();
-    addMessage("Arre, connection mein kuch problem hai. Check your server and try again!", 'didi');
+    addMessage("Arre, connection mein kuch problem hai. Try again in a moment, beta!", 'didi');
   } finally {
     sendBtn.disabled = false;
   }
